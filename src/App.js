@@ -1,23 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
-
+import RegistrationForm from './components/registrationForm';
+import imageComponent from './components/imageComponent';
+import Modal from './components/registrationForm';
+import 'semantic-ui-css/semantic.min.css';
+import React, { useState } from 'react';
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={openModal}>Sign Up TEST</button>
+      {isModalOpen && (
+        <Modal closeModal={closeModal}>
+            <div className="registration-page">
+              <div className="left-content">
+                <imageComponent/>
+              </div>
+              <div className="right-content">
+                <RegistrationForm />
+              </div>
+            </div>
+        </Modal>
+      )}
     </div>
   );
 }
